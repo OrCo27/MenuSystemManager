@@ -1,4 +1,4 @@
-# MenuSystemManager
+# Menu System Manager
 - Simple menu creator integrated with an external keyboard and screen.
 - Build the menu pages on setup stage with all different items belongs
 - Can easy navigate between the different items and menu pages using navigator keys.
