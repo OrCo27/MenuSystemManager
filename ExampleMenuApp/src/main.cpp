@@ -1,22 +1,12 @@
 #include <iostream>
-#include "MenuBuilder.h"
-#include "IOperationItem.h"
-#include "ScreenStub.h"
-#include "KeyBoardStub.h"
-
-class ExampleOperation : public IOperationItem
-{
-public:
-    void doAction() override
-    {
-        std::cout << "do something!" << std::endl;
-    }
-};
+#include "utils.h"
 
 ScreenStub screen;
 KeyBoardStub  keyboard;
 ExampleOperation exOp;
-shared_ptr<Navigation> nav;
+TimeMenuMemory timeMemory;
+OptionMenuMemory optionMemory;
+Navigation* nav;
 
 void setup()
 {
@@ -29,34 +19,41 @@ void setup()
       .registerEnterKey('E');
 
     /* create all menu required */
-    Menu* main = mb.addMenu("Main-Menu");
-    Menu* m1 = mb.addMenu("Sub-Menu1");
-    Menu* m2 = mb.addMenu("Sub-Menu2");
+    Menu* mainMenu = mb.addMenu("Main");
+    Menu* operationsMenu = mb.addMenu("Actions");
+    Menu* statesMenu = mb.addMenu("States");
 
     /* define the initial menu */
-    mb.setInitialMenu(main);
+    mb.setInitialMenu(mainMenu);
 
     /* add items for [Main-Menu] */
-    mb.addMenuItem(main, "m1", m1);
-    mb.addMenuItem(main, "m2", m2);
-    mb.addOperationItem(main, "m3", &exOp);
-    mb.addOperationItem(main, "m4", &exOp);
-    mb.addOperationItem(main, "m5", &exOp);
-    mb.addOperationItem(main, "m6", &exOp);
+    mb.addMenuItem(mainMenu, operationsMenu);
+    mb.addMenuItem(mainMenu, statesMenu);
 
-    /* add items for [Sub-Menu1] */
-    mb.addOperationItem(m1, "m11", &exOp);
-    mb.addOperationItem(m1, "m12", &exOp);
+    /* add items for [Operations-Menu] */
+    mb.addOperationItem(operationsMenu, "do1", &exOp);
+    mb.addOperationItem(operationsMenu, "do2", &exOp);
+    mb.addOperationItem(operationsMenu, "do3", &exOp);
+    mb.addOperationItem(operationsMenu, "do4", &exOp);
+    mb.addOperationItem(operationsMenu, "do5", &exOp);
+    mb.addOperationItem(operationsMenu, "do6", &exOp);
 
-    /* add items for [Sub-Menu2] */
-    mb.addStateSelectionItem(m2, "Time")
-        .addState("10ms")
-        .addState("20ms")
-        .addState("30ms")
-        .addState("40ms");
-    mb.addStateSelectionItem(m2, "Option")
-        .addState("Regular")
-        .addState("Medium")
+    /* add items for [States-Menu] */
+    mb.addStateSelectionItem<int>(statesMenu, "Interval", &timeMemory)
+        .addState(10)
+        .addState(20)
+        .addState(30)
+        .addState(40)
+        .addState(50)
+        .addState(60)
+        .addState(70)
+        .addState(80)
+        .addState(90)
+        .addState(100);
+
+    mb.addStateSelectionItem<std::string>(statesMenu, "Option", &optionMemory)
+        .addState("Reg")
+        .addState("Med")
         .addState("Hard");
 
     /* get the final instance */
@@ -69,7 +66,7 @@ int main()
 
     while (1)
     {
-        nav->nav();
+        nav->navigate();
     }
     
     return 0;

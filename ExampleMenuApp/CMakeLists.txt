@@ -12,7 +12,7 @@ set(SOURCE_APP_PATH ${PROJECT_SOURCE_DIR}/src)
 
 # include files
 set(HEADER_FILES
-#${HEADER_APP_PATH}/test.h
+${HEADER_APP_PATH}/utils.h
 )
 
 # source files
