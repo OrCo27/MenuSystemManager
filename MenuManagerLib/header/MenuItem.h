@@ -12,10 +12,9 @@ private:
 	IMenuUpdater* m_menuUpdater;
 
 public:
-	MenuItem(const std::string& itemName, Menu* currMenu, Menu* nextMenu, IMenuUpdater* menuUpdater);
+	MenuItem(Menu* currMenu, Menu* nextMenu, IMenuUpdater* menuUpdater);
 	~MenuItem();
 
-	std::string getItemName() const override;
 	std::string getSuffixName() const override;
 	void click() override;
 };
