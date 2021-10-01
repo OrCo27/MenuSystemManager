@@ -2,9 +2,11 @@
 
 #include <iostream>
 
+template <class T>
 class IStateSelection 
 {
 public:
 	virtual ~IStateSelection() {}
-	virtual IStateSelection& addState(const std::string& state) = 0;
+
+	virtual IStateSelection<T>& addState(const T& state) = 0;
 };

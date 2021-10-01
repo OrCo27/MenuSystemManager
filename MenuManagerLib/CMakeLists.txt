@@ -41,7 +41,6 @@ set(SOURCE_FILES
 ${SOURCE_PATH}/GeneralItem.cpp
 ${SOURCE_PATH}/MenuItem.cpp
 ${SOURCE_PATH}/OperationItem.cpp
-${SOURCE_PATH}/StateSelectionItem.cpp
 ${SOURCE_PATH}/Menu.cpp
 ${SOURCE_PATH}/MenuManager.cpp
 ${SOURCE_PATH}/Navigation.cpp
