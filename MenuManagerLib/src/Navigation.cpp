@@ -14,7 +14,7 @@ INavigationCmdBuilder* Navigation::registerKeyToCmd(char key, E_NAV_CMD cmd)
 	return this;
 }
 
-void Navigation::nav()
+void Navigation::navigate()
 {
 	static bool firstTime(true);
 

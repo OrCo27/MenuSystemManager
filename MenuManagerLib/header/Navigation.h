@@ -21,5 +21,5 @@ public:
 	~Navigation();
 
 	INavigationCmdBuilder* registerKeyToCmd(char key, E_NAV_CMD cmd) override;
-	void nav();
+	void navigate();
 };
