@@ -4,7 +4,7 @@
 - Can easy navigate between the different items and menu pages using navigator keys.
 
 This library built to integrate menu pages into Embedded projects based on micro-processors such as Arduino.<br />
-You can simple create your own screen and keyboard that connected as external devices.<br />
+You can simple integrate your own screen and keyboard that connected as external devices.<br />
 All you need to do is to implement **IScreen** and **IKeyBoard** interfaces, as implemented as an example on **ScreenStub.h** and **KeyBoardStub.h**
 
 ## Item Types
