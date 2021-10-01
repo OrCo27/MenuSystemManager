@@ -25,9 +25,12 @@ All you need to do is to implement **IScreen** and **IKeyBoard** interfaces, as 
    Back to previous menu page
 - **Enter**<br />
    Click on current item for perform the appropriate action:
-   - Menu Item: move to relevant menu page.
-   - Operational Item: perform an custom action that registered to this item.
-   - State Item: change the current state belongs to this item.
+   - Menu Item: move to relevant menu page.<br />
+     need to inject the reference for the next menu page into the item builder.
+   - Operational Item: perform an custom action that registered to this item.<br />
+     need to implement **IOperationItem** interface and inject reference into the item builder.
+   - State Item: change the current state belongs to this item.<br />
+     there is an option to save current state into external object, need to implement **IExternalMemory** interface and inject reference into the item builder.
    
 ## Usages
 Simple usage example shown on **ExampleMenuApp** project on **main.cpp** file.<br />
