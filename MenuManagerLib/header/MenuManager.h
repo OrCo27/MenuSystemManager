@@ -5,11 +5,10 @@
 #include "IMenuUpdater.h"
 #include "IMenuNavigation.h"
 #include "IScreen.h"
-#include "IMenuBuilder.h"
 
 using std::vector;
 
-class MenuManager : public IMenuUpdater, public IMenuNavigation, public IMenuBuilder
+class MenuManager : public IMenuUpdater, public IMenuNavigation
 {
 private:
 	vector<shared_ptr<Menu>> m_menuList;
@@ -29,7 +28,7 @@ public:
 	MenuManager(Menu* initialMenu, const IScreen& screen);
 	~MenuManager();
 
-	Menu* addMenu(Menu* menu) override;
+	Menu* addMenu(Menu* menu);
 	void clickCurrentItem() override;
 	void moveToPrevMenu() override;
 	void navigateNextItem() override;

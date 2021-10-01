@@ -8,10 +8,9 @@ MenuManager::MenuManager(const IScreen& screen)
 }
 
 MenuManager::MenuManager(Menu* initialMenu, const IScreen& screen)
-	: m_currMenu(initialMenu), m_screen(screen), m_currItemNum(0)
+	: m_screen(screen)
 {
-	m_startWindow = 0;
-	m_endWindow = m_screen.getTotalRows() - 1; // -1 for skipping title
+	setCurrentMenu(initialMenu);
 }
 
 MenuManager::~MenuManager() = default;
@@ -85,20 +84,23 @@ void MenuManager::setCurrentMenu(Menu* menu)
 {
 	m_currItemNum = 0;
 	m_currMenu = menu;
+
+	m_startWindow = 0;
+	m_endWindow = m_screen.getTotalRows() - 1; // -1 for skipping title
 }
 
 std::string MenuManager::getFixedName(const std::string& prefix, const std::string& itemName, const std::string& suffix)
 {
 	std::stringstream ss;
+	std::string fixed_item_name;
 	int row_width = m_screen.getTotalCols();
 	int suffix_size = suffix.size() + 1; // add one for space
 	int item_fixed_size = row_width - prefix.size() - suffix_size;
 	int prefix_width = row_width - suffix_size;
 
-	std::string fixed_item_name;
 	if (itemName.size() > item_fixed_size) // out of space
 	{
-		fixed_item_name = itemName.substr(0, (size_t)item_fixed_size - 2) + "..";
+		fixed_item_name = itemName.substr(0, item_fixed_size);
 	}
 	else
 	{
@@ -118,18 +120,14 @@ void MenuManager::printMenuName()
 {
 	std::stringstream suffix;
 	std::string fixedTitle;
+	int windowSize = m_endWindow - m_startWindow;
+	int currentItem, totalItems;
 
 	if (m_currMenu)
 	{
-		// add arrows when there are more items to scroll
-		if (m_startWindow > 0)
-		{
-			suffix << "<"; // there are more previous items
-		}
-		if (m_endWindow < m_currMenu->getTotalItemsCount())
-		{
-			suffix << ">"; // there are more next items
-		}
+		// show current item relative to all items only when there are more items than screen can display
+		totalItems = m_currMenu->getTotalItemsCount();
+		suffix << "[" << (m_currItemNum + 1) << "/" << totalItems << "]";
 
 		fixedTitle = getFixedName("", m_currMenu->getMenuName(), suffix.str());
 
@@ -153,7 +151,7 @@ void MenuManager::printMenuItem(int itemNum, int rowScreen)
 	{
 		// generate prefix
 		ss << (m_currItemNum == itemNum ? ">" : " ");
-		ss << (itemNum + 1) << ". ";
+		//ss << (itemNum + 1) << ". ";
 
 		fixedItemName = getFixedName(ss.str(), item->getItemName(), item->getSuffixName());
 
