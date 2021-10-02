@@ -7,11 +7,7 @@
 class ScreenStub : public IScreen
 {
 public:
-	ScreenStub()
-	{
-
-	}
-
+	ScreenStub() {}
 	~ScreenStub() = default;
 
 	void clear() const override
@@ -40,6 +36,6 @@ public:
 
 	void setup() override
 	{
-
+		// initializing screen here
 	}
 };

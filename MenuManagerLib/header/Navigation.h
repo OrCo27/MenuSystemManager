@@ -21,5 +21,10 @@ public:
 	~Navigation();
 
 	INavigationCmdBuilder* registerKeyToCmd(char key, E_NAV_CMD cmd) override;
+
+	/*
+	The main method performed every cycle and responsible for get inputs from keyboard, 
+	perform relevant operation, and display the menu on screen
+	*/
 	void navigate();
 };
