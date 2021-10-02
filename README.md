@@ -1,10 +1,10 @@
 # Menu System Manager
 - Simple menu creator integrated with an external keyboard and screen.
-- Build the menu pages on setup stage with all different items belongs
+- Build the menu pages on setup stage with all different items belongs.
 - Can easy navigate between the different items and menu pages using navigator keys.
 
 This library built to integrate menu pages into Embedded projects based on micro-processors such as Arduino.<br />
-You can simple integrate your own screen and keyboard that connected as external devices.<br />
+You can simple integrate your own screen and keyboard that connected as external devices for controlling the menu and display it.<br />
 All you need to do is to implement **IScreen** and **IKeyBoard** interfaces, as implemented as an example on **ScreenStub.h** and **KeyBoardStub.h**
 
 ## Item Types
@@ -25,11 +25,11 @@ All you need to do is to implement **IScreen** and **IKeyBoard** interfaces, as 
    Back to previous menu page
 - **Enter**<br />
    Click on current item for perform the appropriate action:
-   - Menu Item: move to relevant menu page.<br />
+   - **Menu Item:** move to relevant menu page.<br />
      need to inject the reference for the next menu page into the item builder.
-   - Operational Item: perform an custom action that registered to this item.<br />
+   - **Operational Item:** perform an custom action that registered to this item.<br />
      need to implement **IOperationItem** interface and inject reference into the item builder.
-   - State Item: change the current state belongs to this item.<br />
+   - **State Item:** change the current state belongs to this item.<br />
      there is an option to save current state into external object, need to implement **IExternalMemory** interface and inject reference into the item builder.
    
 ## Usages
