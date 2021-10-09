@@ -1,7 +1,6 @@
 #pragma once
 
 #include "IExternalDevice.h"
-#include <iostream>
 
 class IScreen : public IExternalDevice
 {

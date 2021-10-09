@@ -1,6 +1,5 @@
 #pragma once
 
-#include <iostream>
 #include "GeneralItem.h"
 #include "IOperationItem.h"
 
